@@ -8,6 +8,10 @@
         console.log("bu script sadece bu sayfada çalışacaktır.")
     </script>
 }
+
+@section section_sidebar {
+    @await Html.PartialAsync("_sidebar")
+}
      <table class="table table-bordered" >
             <thead>
                 <tr>
