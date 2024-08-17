@@ -1,0 +1,37 @@
+﻿@model List<Movie>
+@{
+    Layout = "_Layout2";
+}
+
+     <table class="table table-bordered" >
+            <thead>
+                <tr>
+                    <th>Kapak</th>
+                    <th>Film Adı</th>
+                    <th>Açıklama</th>
+                    <th>Yönetmen</th>
+                    <th>Oyuncular</th>
+                    <th>Detaylar</th>
+                </tr>
+            </thead>
+            <tbody>
+        @foreach (var movie in Model)
+        {
+                    <tr>
+                        <td style="max-width:200px"><img style="width:100%" src="/img/@movie.ImageUrl" /></td>
+                        <td>@movie.Title</td>
+                        <td>@movie.Description</td>
+                        <td>@movie.Director</td>
+                        <td>
+                            <ul>
+                        @foreach (var player in movie.Players)
+                        {
+                                        <li>@player</li>
+                        }
+                            </ul>
+                        </td>
+                        <td><button class="btn btn-primary" type="button">Detaylar</button></td>
+                    </tr>
+        }
+            </tbody>
+        </table>
