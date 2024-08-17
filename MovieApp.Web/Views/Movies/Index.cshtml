@@ -1,38 +1,6 @@
 ﻿@model MovieApp.Web.Models.Movie
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head><title></title></head>
-    <body>
-        <h1>Filmler</h1>
-    <div>
-       <table>
-           <thead>
-               <tr>
-                    <th>Film Adı</th>
-                    <th>Açıklama</th>
-                    <th>Yönetmen</th>
-                    <th>Oyuncular</th>
-                    <th>Detaylar</th>
-               </tr>
-           </thead>
-            <tbody>
-                <tr>
-                    <td>@Model.Title</td>
-                    <td>@Model.Description</td>
-                    <td>@Model.Director</td>
-                    <td>
-                        <ul>
-                            @foreach(var player in Model.Players)
-                            {
-                                <li>@player</li>
-                            }
-                        </ul>
-                    </td>
-                    <td><button type="button">Detaylar</button></td>
-                </tr>
-            </tbody>
-       </table>
-    </div>
-    </body>
-   
-</html>
+<h1>Son Yüklenen Film</h1>
+<div>
+    @await Html.PartialAsync("_movieItem", Model)
+</div>

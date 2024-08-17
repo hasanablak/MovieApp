@@ -23,20 +23,5 @@
 
         @foreach (var movie in Model)
         {
-            <div class="card mb-3">
-             <img src="/img/@movie.ImageUrl" class="img-thumbnail" style="width:100%;max-height:200px;object-fit:cover" alt="Kapak Resmi">
-                <div class="card-body">
-                    <h5 class="card-title">@movie.Title</h5>
-                    <p class="card-text">@movie.Description</p>
-                    <p class="card-text"><strong>Yönetmen:</strong> @movie.Director</p>
-                    <p class="card-text"><strong>Oyuncular:</strong> 
-                        
-                        @foreach(var player in movie.Players)
-                        {
-                            <i>@player</i>
-                        }
-                    </p>
-                    <a href="#" class="btn btn-primary">Detayları Göster</a>
-                </div>
-            </div>
+           @await Html.PartialAsync("_movieItem", movie)
         }

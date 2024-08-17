@@ -30,6 +30,7 @@ namespace MovieApp.Web.Controllers
             movie.Description = desc;
             movie.Director = manager;
             movie.Players = players;
+            movie.ImageUrl = "starwars.jpg";
 
             ViewBag.movie = movie;
 
