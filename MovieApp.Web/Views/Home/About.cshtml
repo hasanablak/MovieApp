@@ -1,7 +1,8 @@
-﻿<html xmlns="http://www.w3.org/1999/xhtml">
-    <head><title></title></head>
-    <body></body>
-    <div>
-        Home/About
-    </div>
-</html>
+﻿@model MovieGenreViewModel
+
+@section section_sidebar {
+    @await Html.PartialAsync("_sidebar", Model.Genres)
+}
+
+
+Home About
