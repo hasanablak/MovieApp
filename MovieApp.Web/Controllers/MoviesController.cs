@@ -38,21 +38,7 @@ namespace MovieApp.Web.Controllers
         }
         public IActionResult List()
         {
-            var genreList = new List<Genre>()
-            {
-                new Genre
-                {
-                    Name = "Macera"
-                },
-                new Genre
-                {
-                    Name = "Komedi"
-                },
-                new Genre
-                {
-                    Name = "Bilim Kurgu"
-                }
-            };
+           
             var movieList = new List<Movie>()
             {
                 new Movie{
@@ -93,8 +79,7 @@ namespace MovieApp.Web.Controllers
 
             var model = new MovieGenreViewModel()
             {
-                Movies = movieList,
-                Genres = genreList
+                Movies = movieList
             };
 
 

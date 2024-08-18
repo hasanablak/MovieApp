@@ -15,7 +15,9 @@
 }
 
 @section section_sidebar {
-    @await Html.PartialAsync("_sidebar", Model.Genres)
+    @*@await Html.PartialAsync("_sidebar", Model.Genres)*@
+
+    @await Component.InvokeAsync("Genres")
 }
 
 

@@ -13,23 +13,9 @@ namespace MovieApp.Web.Controllers
 
         public IActionResult About()
         {
-            var genreList = new List<Genre>()
-            {
-                new Genre
-                {
-                    Name = "Macera"
-                },
-                new Genre
-                {
-                    Name = "Komedi"
-                },
-                new Genre
-                {
-                    Name = "Bilim Kurgu"
-                }
-            };
+          
 
-            return View(genreList);
+            return View();
         }
     }
 }
