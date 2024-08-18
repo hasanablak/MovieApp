@@ -1,6 +1,8 @@
 ﻿@model MovieApp.Web.Models.Movie
 
-<h1>Son Yüklenen Film</h1>
+@section header {
+    @await Html.PartialAsync("_header")
+}
 <div>
     @await Html.PartialAsync("_movieItem", Model)
 </div>
