@@ -99,7 +99,7 @@ namespace MovieApp.Web.Data
                     Director = "Steven Spielberg",
                     Description = "During a preview tour, a theme park suffers a major power breakdown that allows its cloned dinosaur exhibits to run amok.",
                     Players = new string[]{"Sam Neill", "Laura Dern"},
-                    ImageUrl = "jurassic_park.avif"
+                    ImageUrl = "jurassic_park.webp"
                 }
             };
 
