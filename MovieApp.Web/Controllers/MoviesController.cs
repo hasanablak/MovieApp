@@ -32,11 +32,11 @@ namespace MovieApp.Web.Controllers
             return View("CustomList", model);
         }
 
-        public IActionResult Details(string id)
+        public IActionResult Details(int id)
         {
             
 
-            return View();
+            return View(MovieRepository.GetById(id));
         }
 
     }

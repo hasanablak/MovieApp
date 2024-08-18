@@ -1,7 +1,32 @@
-﻿@{
-    Layout = "_Layout2";
-}
+﻿@model Movie
 
-<div>
-    Details
+<div class="card">
+        <div class="row">
+            <div class="col-3">
+                <img src="/img/@Model.ImageUrl" class="card-img" />
+            </div>
+            <div class="col">
+
+                <div class="card-body">
+                    <h5 class="card-title">@Model.Title</h5>
+                    <p class="card-text">
+                        <i>Description:</i>
+                        @Model.Description</p>
+                    <p class="card-text">
+                        <i>Director:</i> @Model.Director
+                    </p>
+
+                    <p>
+                        <i>Actors:</i>
+                        <ul class="list-group">
+                        @foreach(var player in Model.Players)
+                        {
+                            <li class="list-group-item">@player</li>
+                        }
+                    </ul>
+                    </p>
+                </div>
+
+            </div>
+        </div>
 </div>

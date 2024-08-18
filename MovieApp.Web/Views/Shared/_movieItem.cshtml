@@ -10,17 +10,8 @@
             </div>
             <div class="col">
                 <h5 class="card-title">@Model.Title</h5>
-                <p class="card-text">@Model.Description</p>
-                <p class="card-text"><strong>Yönetmen:</strong> @Model.Director</p>
-                <p class="card-text">
-                    <strong>Oyuncular;</strong>
-
-                    @foreach (var player in Model.Players)
-                    {
-                        <i>@player</i>
-                    }
-                </p>
-                <a href="#" class="btn btn-primary">Detayları Göster</a>
+               
+                <a href="/movies/details/@Model.MovieId" class="btn btn-primary">Detayları Göster</a>
             </div>
         </div>
     </div>
