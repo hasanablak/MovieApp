@@ -28,12 +28,8 @@ namespace MovieApp.Web.Controllers
                     Name = "Bilim Kurgu"
                 }
             };
-            var model = new MovieGenreViewModel()
-            {
-                Genres = genreList
-            };
 
-            return View(model);
+            return View(genreList);
         }
     }
 }

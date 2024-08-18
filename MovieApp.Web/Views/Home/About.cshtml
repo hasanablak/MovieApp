@@ -1,7 +1,7 @@
-﻿@model MovieGenreViewModel
+﻿@model List<Genre>
 
 @section section_sidebar {
-    @await Html.PartialAsync("_sidebar", Model.Genres)
+    @await Html.PartialAsync("_sidebar", Model)
 }
 
 
