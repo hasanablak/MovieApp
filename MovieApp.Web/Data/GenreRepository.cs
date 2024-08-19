@@ -26,6 +26,11 @@ namespace MovieApp.Web.Data
                 {
                     GenreId = 3,
                     Name = "Bilim Kurgu"
+                },
+                new Genre
+                {
+                    GenreId = 4,
+                    Name = "Savaş"
                 }
             };
         }

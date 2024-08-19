@@ -17,10 +17,13 @@
 @section section_sidebar {
     @*@await Html.PartialAsync("_sidebar", Model.Genres)*@
 
-    @await Component.InvokeAsync("Genres")
+    @await Component.InvokeAsync("Genres", Model.Genre)
 }
 
-
+@if(Model.Movies.Count() == 0)
+{
+    <div class="alert alert-warning">Bu Kategoride Film Bulunamadı!</div>
+}
 @foreach (var movie in Model.Movies)
 {
     @await Html.PartialAsync("_movieItem", movie)

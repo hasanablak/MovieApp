@@ -1,7 +1,17 @@
 ﻿@model List<Genre>
 <ul class="list-group">
+    <li class="list-group-item">
+        <a href="/movies/list/">Tüm Filmler</a>
+    </li>
+
     @foreach (var genre in Model)
     {
-        <li class="list-group-item">@genre.Name</li>
+       
+            <li class="list-group-item">
+                <a href="/movies/list/@genre.GenreId">
+                        @genre.Name
+                </a>
+            </li>
+      
     }
 </ul>

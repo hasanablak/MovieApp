@@ -3,6 +3,7 @@ using MovieApp.Web.Data;
 using MovieApp.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MovieApp.Web.Controllers
 {
@@ -17,16 +18,28 @@ namespace MovieApp.Web.Controllers
 
             return View(model);
         }
-        public IActionResult List()
+        //movies/list/
+        //movies/list/1
+        public IActionResult List(int? id)
         {
-           
-            
+
+            var movies = MovieRepository.Movies;
+
 
 
             var model = new MoviesViewModel()
             {
-                Movies = MovieRepository.Movies
+                Movies = movies
             };
+
+
+            if (id != null)
+            {
+
+                movies = movies.Where(movie => movie.GenreId == id).ToList();
+
+            }
+
 
 
             return View("CustomList", model);

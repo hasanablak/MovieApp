@@ -7,5 +7,7 @@ namespace MovieApp.Web.Models
 
         public List<Movie> Movies { get; set; }
 
+        public Genre Genre { get; set; }
+
     }
 }
