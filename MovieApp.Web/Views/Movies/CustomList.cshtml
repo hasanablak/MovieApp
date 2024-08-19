@@ -23,7 +23,12 @@
 @if(Model.Movies.Count() == 0)
 {
     <div class="alert alert-warning">Bu Kategoride Film Bulunamadı!</div>
+}else if (Model.Genre != null)
+{
+    <div class="alert alert-info">@Model.Genre.Name kategorisine ait @Model.Movies.Count() adet film bulundu.</div>
 }
+
+
 @foreach (var movie in Model.Movies)
 {
     @await Html.PartialAsync("_movieItem", movie)

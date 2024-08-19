@@ -22,15 +22,11 @@ namespace MovieApp.Web.Controllers
         //movies/list/1
         public IActionResult List(int? id)
         {
+            var controller = RouteData.Values["controller"]; // List(int?id, string controller) da yapılabilir
+            var action = RouteData.Values["action"];
+            var genreId = RouteData.Values["id"];
 
             var movies = MovieRepository.Movies;
-
-
-
-            var model = new MoviesViewModel()
-            {
-                Movies = movies
-            };
 
 
             if (id != null)
@@ -39,6 +35,20 @@ namespace MovieApp.Web.Controllers
                 movies = movies.Where(movie => movie.GenreId == id).ToList();
 
             }
+
+
+            var model = new MoviesViewModel()
+            {
+                Movies = movies
+            };
+
+
+            if(id != null)
+            {
+                model.Genre = GenreRepository.GetById(Convert.ToInt32(genreId));
+            }
+
+
 
 
 

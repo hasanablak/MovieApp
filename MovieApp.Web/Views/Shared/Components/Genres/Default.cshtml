@@ -1,17 +1,18 @@
 ﻿@model List<Genre>
 <ul class="list-group">
-    <li class="list-group-item">
-        <a href="/movies/list/">Tüm Filmler</a>
-    </li>
+    <a href="/movies/list/" class="list-group-item @(ViewBag.SelectedGenre == null ? "active" : "")">
+        Tüm Filmler
+    </a>
 
     @foreach (var genre in Model)
     {
-       
-            <li class="list-group-item">
-                <a href="/movies/list/@genre.GenreId">
+
+        <a  href="/movies/list/@genre.GenreId"
+            class="list-group-item @(ViewBag.SelectedGenre == genre.GenreId.ToString() ? "active" : "" )">
+              
                         @genre.Name
-                </a>
-            </li>
+                
+            </a>
       
     }
 </ul>

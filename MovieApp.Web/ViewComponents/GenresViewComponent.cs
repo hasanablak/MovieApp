@@ -11,6 +11,7 @@ namespace MovieApp.Web.ViewComponents
         {
             var genres = GenreRepository.Genres;
 
+            ViewBag.SelectedGenre = RouteData.Values["id"];
             return View(genres);
         }
     }
