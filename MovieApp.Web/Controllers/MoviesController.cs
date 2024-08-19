@@ -20,11 +20,13 @@ namespace MovieApp.Web.Controllers
         }
         //movies/list/
         //movies/list/1
-        public IActionResult List(int? id)
+        public IActionResult List(int? id, string? keyword)
         {
             var controller = RouteData.Values["controller"]; // List(int?id, string controller) da yapılabilir
             var action = RouteData.Values["action"];
             var genreId = RouteData.Values["id"];
+
+            //var keyword = HttpContext.Request.Query["keyword"].toString();
 
             var movies = MovieRepository.Movies;
 
@@ -34,6 +36,12 @@ namespace MovieApp.Web.Controllers
 
                 movies = movies.Where(movie => movie.GenreId == id).ToList();
 
+            }
+
+            if (!string.IsNullOrEmpty(keyword)) {
+                movies = movies
+                    .Where(movie => movie.Title.ToLower().Contains(keyword) || movie.Description.ToLower().Contains(keyword))
+                    .ToList();
             }
 
 
@@ -60,6 +68,16 @@ namespace MovieApp.Web.Controllers
             
 
             return View(MovieRepository.GetById(id));
+        }
+
+        public IActionResult Search(string? keyword)
+        {
+            var movies = MovieRepository.GetByKeyword(keyword);
+
+            var matchedMovies = movies
+                .Where(movie => movie.Title.ToLower().Contains(keyword) || movie.Description.ToLower().Contains(keyword))
+                .ToList();
+            return Json(matchedMovies);
         }
 
     }

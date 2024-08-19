@@ -36,6 +36,37 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     @RenderSection("scripts", false)
 
+
+    <script>
+        const searchFormInput = document.querySelector("#search-input");
+        const searchResultList = document.querySelector("#search-results");
+        const searchResultContainer = document.querySelector("#search-results-container");
+
+        searchFormInput.addEventListener("keyup", function (e) {
+            console.log(searchFormInput.value)
+
+
+            fetch("/Movies/Search?keyword=" + searchFormInput.value)
+            .then(e => e.json())
+            .then(response => {
+                searchResultContainer.classList.remove("d-none");
+                    searchResultList.querySelectorAll("a").forEach(listItem => listItem.remove());
+                response.forEach(function (movie) {
+                        const listItem = document.createElement("a");
+                        listItem.classList.add("list-group-item");
+                        listItem.href = `/Movies/Details/${ movie.movieId }`
+                        listItem.innerText = movie.title;
+
+                    searchResultList.appendChild(listItem);
+                })
+            });
+
+
+        });
+
+
+
+    </script>
 </body>
 </html>
 

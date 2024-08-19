@@ -129,5 +129,11 @@ namespace MovieApp.Web.Data
         {
             return _movies.FirstOrDefault(movie => movie.MovieId == id);
         }
+
+        public static List<Movie> GetByKeyword(string keyword)
+        {
+            return _movies.Where(movie => movie.Title.ToLower().Contains(keyword) || movie.Description.ToLower().Contains(keyword))
+                .ToList();
+        }
     }
 }

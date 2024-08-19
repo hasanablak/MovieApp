@@ -12,13 +12,32 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/movies/list">Movies List</a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="/home/about">About</a>
                 </li>
             </ul>
-            <!-- Sağdaki Kayıt ve Giriş Linkleri -->
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <!-- Form ve Sağdaki Kayıt, Giriş Linkleri -->
+            <form action="/Movies/List" method="GET" class="d-flex ms-auto me-2 mb-2 mb-lg-0 position-relative" role="search">
+                
+                <div class="d-flex position-relative" style="flex-direction:column">
+                    <input class="form-control me-2" name="keyword" id="search-input" type="search" placeholder="Ara" aria-label="Search">
+
+
+                    <div class="position-relative w-100 d-none" id="search-results-container">
+                        <div class="position-absolute w-100">
+                            <ul class="list-group" id="search-results" style="z-index:999">
+                                <a class="list-group-item">Test</a>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <button class="btn btn-outline-light" type="submit">Ara</button>
+                
+            </form>
+            
+            <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link text-light" href="/Home/Register">Kayıt</a>
                 </li>
@@ -29,3 +48,4 @@
         </div>
     </div>
 </nav>
+
