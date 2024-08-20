@@ -147,6 +147,7 @@ namespace MovieApp.Web.Data
                     movie.Description = _movie.Description;
                     movie.Director = _movie.Director;
                     movie.ImageUrl = _movie.ImageUrl;
+                    movie.GenreId = _movie.GenreId;
 
                     break;
                 }
