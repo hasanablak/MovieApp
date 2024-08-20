@@ -1,4 +1,6 @@
-﻿<h1>Create Movie</h1>
+﻿@model Movie
+
+<h1>Create Movie</h1>
 <hr />
 
 @if (ViewBag.Message != null)
@@ -8,28 +10,28 @@
     </div>
 }
 
-<form action="/Movies/Create" method="POST">
+<form asp-controller="Movies" asp-action="Create" method="POST">
     <div class="form-group">
-        <label for="">Title</label>
-        <input name="Title" type="text" class="form-control" id="" placeholder="Movie Title">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" placeholder="Movie Title">
     </div>
     <div class="form-group">
-        <label for="">Description</label>
-        <textarea name="Description" class="form-control" placeholder="Description" rows="2"></textarea>
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description"  class="form-control" placeholder="Description" rows="2"></textarea>
     </div>
     <div class="form-group">
-        <label for="">Director</label>
-        <input name="director" type="text" class="form-control" id="" placeholder="Movie Director">
-    </div>
-
-    <div class="form-group">
-        <label for="">Image Url</label>
-        <input name="ImageUrl" type="text" class="form-control" id="" placeholder="Movie Poster Url">
+        <label asp-for="Director"></label>
+        <input asp-for="Director" class="form-control" placeholder="Movie Director">
     </div>
 
     <div class="form-group">
-        <label for="">Genre Id</label>
-        <input name="GenreId" type="text" class="form-control" id="" placeholder="Category Id">
+        <label asp-for="ImageUrl"></label>
+        <input asp-for="ImageUrl" class="form-control"  placeholder="Movie Poster Url">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="GenreId"></label>
+        <input asp-for="GenreId" class="form-control" placeholder="Category Id">
     </div>
    
     <button type="submit" class="btn btn-primary mt-3">Create</button>
