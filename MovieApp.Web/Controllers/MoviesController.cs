@@ -97,6 +97,23 @@ namespace MovieApp.Web.Controllers
             return RedirectToAction("Create");
         }
 
+        public IActionResult Update(int id)
+        {
+           var movie =  MovieRepository.GetById(id);
+            return View(movie);
+        }
+
+        [HttpPost]
+        public IActionResult Update(int id, Movie movie) {
+
+            movie.MovieId = id;
+            MovieRepository.UpdateMovieById(movie);
+
+            return RedirectToAction("Details", "Movies", new { @id = movie.MovieId });
+        }
+
+
+
 
 
     }

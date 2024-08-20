@@ -136,5 +136,24 @@ namespace MovieApp.Web.Data
             return _movies.Where(movie => movie.Title.ToLower().Contains(keyword) || movie.Description.ToLower().Contains(keyword))
                 .ToList();
         }
+
+        public static void UpdateMovieById(Movie _movie)
+        {
+            foreach(var movie in _movies)
+            {
+                if(movie.MovieId == _movie.MovieId)
+                {
+                    movie.Title = _movie.Title;
+                    movie.Description = _movie.Description;
+                    movie.Director = _movie.Director;
+                    movie.ImageUrl = _movie.ImageUrl;
+
+                    break;
+                }
+
+            }
+
+            
+        }
     }
 }

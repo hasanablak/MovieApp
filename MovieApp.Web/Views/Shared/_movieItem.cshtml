@@ -11,7 +11,17 @@
             <div class="col">
                 <h5 class="card-title">@Model.Title</h5>
                
-                <a href="/movies/details/@Model.MovieId" class="btn btn-primary">Detayları Göster</a>
+                <a asp-action="Details"
+                   asp-controller="Movies"
+                   asp-route-id="@Model.MovieId"
+                   class="btn btn-primary">Detayları Göster</a>
+
+
+                <a 
+                    asp-action="Update"
+                    asp-controller="Movies"
+                    asp-route-id="@Model.MovieId"
+                    class="btn btn-primary">Düzenle</a>
             </div>
         </div>
     </div>
