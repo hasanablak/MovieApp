@@ -1,0 +1,36 @@
+﻿<h1>Create Movie</h1>
+<hr />
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-info">
+        @ViewBag.Message
+    </div>
+}
+
+<form action="/Movies/Create" method="POST">
+    <div class="form-group">
+        <label for="">Title</label>
+        <input name="Title" type="text" class="form-control" id="" placeholder="Movie Title">
+    </div>
+    <div class="form-group">
+        <label for="">Description</label>
+        <textarea name="Description" class="form-control" placeholder="Description" rows="2"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="">Director</label>
+        <input name="director" type="text" class="form-control" id="" placeholder="Movie Director">
+    </div>
+
+    <div class="form-group">
+        <label for="">Image Url</label>
+        <input name="ImageUrl" type="text" class="form-control" id="" placeholder="Movie Poster Url">
+    </div>
+
+    <div class="form-group">
+        <label for="">Genre Id</label>
+        <input name="GenreId" type="text" class="form-control" id="" placeholder="Category Id">
+    </div>
+   
+    <button type="submit" class="btn btn-primary mt-3">Create</button>
+</form>

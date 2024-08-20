@@ -80,5 +80,24 @@ namespace MovieApp.Web.Controllers
             return Json(matchedMovies);
         }
 
+        public IActionResult Create()
+        {
+
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult Create(Movie movie)
+        {
+            MovieRepository.Add(movie);
+
+            ViewBag.Message = "Created with successfully";
+
+            return RedirectToAction("Create");
+        }
+
+
+
     }
 }
