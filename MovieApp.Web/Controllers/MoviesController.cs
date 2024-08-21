@@ -59,8 +59,6 @@ namespace MovieApp.Web.Controllers
 
 
 
-
-
             return View("CustomList", model);
         }
 
@@ -97,10 +95,10 @@ namespace MovieApp.Web.Controllers
 
                 MovieRepository.Add(movie);
 
-                ViewBag.Message = "Created with successfully";
+                //ViewBag.Message = "Created with successfully";
 
-                TempData["message"] = "Film Oluşturuldu";
-                return RedirectToAction("Create");
+                TempData["Message"] = "Film Oluşturuldu";
+                return RedirectToAction("List");
 
             }
 
@@ -128,6 +126,8 @@ namespace MovieApp.Web.Controllers
                 movie.MovieId = id;
                 MovieRepository.UpdateMovieById(movie);
 
+                TempData["Message"] = $"{movie.Title} Güncellendi";
+
                 return RedirectToAction("Details", "Movies", new { @id = movie.MovieId });
                
             }
@@ -145,7 +145,12 @@ namespace MovieApp.Web.Controllers
         [HttpPost]
         public IActionResult Delete(int id) {
 
+            var movie = MovieRepository.GetById(id);
+
             MovieRepository.DeleteById(id);
+            
+            TempData["Message"] = $"{movie.Title} Silindi";
+
             return RedirectToAction("List");
         }
 

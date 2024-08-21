@@ -20,6 +20,8 @@
     @await Component.InvokeAsync("Genres", Model.Genre)
 }
 
+
+
 @if(Model.Movies.Count() == 0)
 {
     <div class="alert alert-warning">Bu Kategoride Film Bulunamadı!</div>
@@ -28,6 +30,11 @@
     <div class="alert alert-info">@Model.Genre.Name kategorisine ait @Model.Movies.Count() adet film bulundu.</div>
 }
 
+<div class="row my-3">
+    <div class="col d-flex justify-content-end align-items-center">
+        <a asp-action="Create" asp-controller="Movies" class="btn btn-warning">Yeni Film Ekle</a>
+    </div>    
+</div>
 
 
 @foreach (var movie in Model.Movies)

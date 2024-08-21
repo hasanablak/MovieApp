@@ -10,7 +10,17 @@
     @RenderSection("styles", false)
 </head>
 <body>
-   @await Html.PartialAsync("_nav")
+
+    @await Html.PartialAsync("_nav")
+
+    @RenderSection("message", false)
+
+    @if (TempData["Message"] != null)
+    {
+        @await Html.PartialAsync("_message", (string)TempData["Message"]);
+    }
+
+
     @RenderSection("header", false)
   
     <div class="container mt-3">
