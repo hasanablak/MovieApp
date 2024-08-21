@@ -142,6 +142,14 @@ namespace MovieApp.Web.Controllers
         }
 
 
+        [HttpPost]
+        public IActionResult Delete(int id) {
+
+            MovieRepository.DeleteById(id);
+            return RedirectToAction("List");
+        }
+
+
 
 
 

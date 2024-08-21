@@ -156,5 +156,16 @@ namespace MovieApp.Web.Data
 
             
         }
+
+        public static void DeleteById(int id)
+        {
+            var movie = GetById(id);
+
+            if(movie != null)
+            {
+                _movies.Remove(movie);
+            }
+
+        }
     }
 }
