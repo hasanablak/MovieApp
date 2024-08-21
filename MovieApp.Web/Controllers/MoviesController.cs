@@ -83,7 +83,7 @@ namespace MovieApp.Web.Controllers
 
         public IActionResult Create()
         {
-
+            ViewBag.Message = TempData["message"]?.ToString() ?? null;
             ViewBag.Genres = new SelectList(GenreRepository.Genres, "GenreId", "Name");
             return View();
         }
@@ -92,10 +92,18 @@ namespace MovieApp.Web.Controllers
         [HttpPost]
         public IActionResult Create(Movie movie)
         {
-            MovieRepository.Add(movie);
+            if (ModelState.IsValid)
+            {
 
-            ViewBag.Message = "Created with successfully";
+                MovieRepository.Add(movie);
 
+                ViewBag.Message = "Created with successfully";
+
+                TempData["message"] = "Film Oluşturuldu";
+                return RedirectToAction("Create");
+
+            }
+            TempData["message"] = "Gerekli Alanları Doldurunuz!";
             return RedirectToAction("Create");
         }
 
