@@ -103,8 +103,12 @@ namespace MovieApp.Web.Controllers
                 return RedirectToAction("Create");
 
             }
-            TempData["message"] = "Gerekli Alanları Doldurunuz!";
-            return RedirectToAction("Create");
+
+            ViewBag.Message = "Gerekli Alanları Doldurunuz!";
+
+
+            ViewBag.Genres = new SelectList(GenreRepository.Genres, "GenreId", "Name");
+            return View();
         }
 
         public IActionResult Update(int id)
@@ -119,10 +123,22 @@ namespace MovieApp.Web.Controllers
         [HttpPost]
         public IActionResult Update(int id, Movie movie) {
 
-            movie.MovieId = id;
-            MovieRepository.UpdateMovieById(movie);
+            if (ModelState.IsValid)
+            {
+                movie.MovieId = id;
+                MovieRepository.UpdateMovieById(movie);
 
-            return RedirectToAction("Details", "Movies", new { @id = movie.MovieId });
+                return RedirectToAction("Details", "Movies", new { @id = movie.MovieId });
+               
+            }
+
+
+            ViewBag.Message = "Gerekli Alanları Doldurunuz!";
+
+            ViewBag.Genres = new SelectList(GenreRepository.Genres, "GenreId", "Name");
+
+            return View(movie);
+
         }
 
 

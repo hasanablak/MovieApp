@@ -30,6 +30,6 @@ namespace MovieApp.Web.Models
 
         [DisplayName("Film Kategorisi")]
         [Required(ErrorMessage = "Kategori Seçimi Zorunludur")]
-        public int GenreId { get; set; }
+        public int? GenreId { get; set; }
     }
 }
