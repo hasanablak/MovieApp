@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using MovieApp.Web.Entity;
+using System.Collections.Generic;
 
 namespace MovieApp.Web.Models
 {
@@ -9,5 +10,6 @@ namespace MovieApp.Web.Models
 
         public Genre Genre { get; set; }
 
+        
     }
 }
