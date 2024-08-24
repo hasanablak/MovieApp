@@ -22,7 +22,7 @@ namespace MovieApp.Web.Entity
 
         public string Director { get; set; }
 
-        public string[] Players { get; set; }
+        //public string[] Players { get; set; }
 
         [Required]
         public string ImageUrl { get; set; }

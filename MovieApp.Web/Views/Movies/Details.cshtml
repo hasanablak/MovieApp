@@ -15,22 +15,22 @@
                     <p class="card-text">
                         <i>Director:</i> @Model.Director
                     </p>
-                @if(Model.Players == null)
+              @*   @if(model.players == null)
                 {
-                    <div class="alert alert-info"> Bu filma ait bir oyuncu bilgisi bulunamadı</div>
+                    <div class="alert alert-info"> bu filma ait bir oyuncu bilgisi bulunamadı</div>
                 }
                 else{
                     <p>
-                        <i>Actors:</i>
+                        <i>actors:</i>
                         <ul class="list-group">
-                            @foreach(var player in Model.Players)
+                            @foreach(var player in model.players)
                             {
                                 <li class="list-group-item">@player</li>
                             }
                         </ul>
                     </p>
 
-                }
+                } *@
                 </div>
 
             </div>
