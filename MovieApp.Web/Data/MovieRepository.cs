@@ -126,6 +126,7 @@ namespace MovieApp.Web.Data
         {
             return _movies.Where(movie => movie.Title.ToLower().Contains(keyword) || movie.Description.ToLower().Contains(keyword))
                 .ToList();
+
         }
 
         public static void UpdateMovieById(Movie _movie)

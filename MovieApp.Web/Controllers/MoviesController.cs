@@ -23,7 +23,7 @@ namespace MovieApp.Web.Controllers
         {
             var model = new HomePageViewModel
             {
-                PopularMovies = MovieRepository.Movies
+                PopularMovies = _context.Movies.ToList()
             };
 
             return View(model);
@@ -80,10 +80,9 @@ namespace MovieApp.Web.Controllers
 
         public IActionResult Search(string? keyword)
         {
-            var movies = MovieRepository.GetByKeyword(keyword);
+            //var movies = MovieRepository.GetByKeyword(keyword);
 
-            var matchedMovies = movies
-                .Where(movie => movie.Title.ToLower().Contains(keyword) || movie.Description.ToLower().Contains(keyword))
+            var matchedMovies = _context.Movies.Where(movie => movie.Title.ToLower().Contains(keyword) || movie.Description.ToLower().Contains(keyword))
                 .ToList();
             return Json(matchedMovies);
         }
@@ -112,19 +111,20 @@ namespace MovieApp.Web.Controllers
                 return RedirectToAction("List");
 
             }
-
+            var genres = _context.Genres.ToList();
             ViewBag.Message = "Gerekli Alanları Doldurunuz!";
 
 
-            ViewBag.Genres = new SelectList(GenreRepository.Genres, "GenreId", "Name");
+            ViewBag.Genres = new SelectList(genres, "GenreId", "Name");
             return View();
         }
 
         public IActionResult Update(int id)
         {
-           var movie =  MovieRepository.GetById(id);
+            var movie = _context.Movies.Find(id);
+            var genres = _context.Genres.ToList();
 
-            ViewBag.Genres = new SelectList(GenreRepository.Genres, "GenreId", "Name");
+            ViewBag.Genres = new SelectList(genres, "GenreId", "Name");
 
             return View(movie);
         }
@@ -134,19 +134,19 @@ namespace MovieApp.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                movie.MovieId = id;
-                MovieRepository.UpdateMovieById(movie);
+                _context.Movies.Update(movie);
+                _context.SaveChanges();
 
                 TempData["Message"] = $"{movie.Title} Güncellendi";
 
-                return RedirectToAction("Details", "Movies", new { @id = movie.MovieId });
+                return RedirectToAction("Details", "Movies", new { @id = id });
                
             }
 
-
+            var genres = _context.Genres.ToList();
             ViewBag.Message = "Gerekli Alanları Doldurunuz!";
 
-            ViewBag.Genres = new SelectList(GenreRepository.Genres, "GenreId", "Name");
+            ViewBag.Genres = new SelectList(genres, "GenreId", "Name");
 
             return View(movie);
 
@@ -156,9 +156,11 @@ namespace MovieApp.Web.Controllers
         [HttpPost]
         public IActionResult Delete(int id) {
 
-            var movie = MovieRepository.GetById(id);
+            var movie = _context.Movies.Find(id);
 
-            MovieRepository.DeleteById(id);
+            _context.Movies.Remove(movie); // Movies entity'sinden getirildi
+            _context.SaveChanges(); // ama direkt context nesnesi save edildi hmm...
+            //MovieRepository.DeleteById(id);
             
             TempData["Message"] = $"{movie.Title} Silindi";
 
