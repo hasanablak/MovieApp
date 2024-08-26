@@ -9,8 +9,16 @@ using System.Linq;
 
 namespace MovieApp.Web.Controllers
 {
+
     public class MoviesController : Controller
     {
+
+        private readonly MovieContext _context;
+
+        public MoviesController(MovieContext context)
+        {
+            _context = context;
+        }
         public IActionResult Index()
         {
             var model = new HomePageViewModel
@@ -94,8 +102,9 @@ namespace MovieApp.Web.Controllers
             if (ModelState.IsValid)
             {
 
-                MovieRepository.Add(movie);
-
+                //MovieRepository.Add(movie);
+                _context.Movies.Add(movie);
+                _context.SaveChanges();
                 //ViewBag.Message = "Created with successfully";
 
                 TempData["Message"] = "Film Oluşturuldu";
