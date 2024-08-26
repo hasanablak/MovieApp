@@ -38,6 +38,7 @@ namespace MovieApp.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                DataSeeding.Seed(app);
             }
 
             app.UseStaticFiles(); //wwwroot klasörünü kullanýma açar.
