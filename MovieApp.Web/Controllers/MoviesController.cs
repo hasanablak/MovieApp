@@ -90,8 +90,9 @@ namespace MovieApp.Web.Controllers
 
         public IActionResult Create()
         {
+            var genres = _context.Genres.ToList();
             ViewBag.Message = TempData["message"]?.ToString() ?? null;
-            ViewBag.Genres = new SelectList(GenreRepository.Genres, "GenreId", "Name");
+            ViewBag.Genres = new SelectList(genres, "GenreId", "Name"); // like a laravel pluck
             return View();
         }
 
