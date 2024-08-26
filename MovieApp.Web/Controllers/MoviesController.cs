@@ -74,8 +74,8 @@ namespace MovieApp.Web.Controllers
         public IActionResult Details(int id)
         {
             
-
-            return View(MovieRepository.GetById(id));
+            var movie = _context.Movies.Find(id);
+            return View(movie);
         }
 
         public IActionResult Search(string? keyword)
