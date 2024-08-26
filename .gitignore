@@ -79,3 +79,5 @@ MovieApp.Web/movies.db-wal
 MovieApp.Web/movies.db-shm
 Movies.db
 MovieApp.Web/movies.db - Kısayol.lnk
+*.db
+Movies.db

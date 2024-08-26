@@ -38,26 +38,26 @@ namespace MovieApp.Web.Controllers
 
             //var keyword = HttpContext.Request.Query["keyword"].toString();
 
-            var movies = MovieRepository.Movies;
+            //var movies = MovieRepository.Movies;
 
+            var movies = _context.Movies.AsQueryable();
 
             if (id != null)
             {
 
-                movies = movies.Where(movie => movie.GenreId == id).ToList();
+                movies = movies.Where(movie => movie.GenreId == id);
 
             }
 
             if (!string.IsNullOrEmpty(keyword)) {
                 movies = movies
-                    .Where(movie => movie.Title.ToLower().Contains(keyword) || movie.Description.ToLower().Contains(keyword))
-                    .ToList();
+                    .Where(movie => movie.Title.ToLower().Contains(keyword) || movie.Description.ToLower().Contains(keyword));
             }
 
 
             var model = new MoviesViewModel()
             {
-                Movies = movies
+                Movies = movies.ToList()
             };
 
 
