@@ -63,7 +63,7 @@ namespace MovieApp.Web.Controllers
 
             if(id != null)
             {
-                model.Genre = GenreRepository.GetById(Convert.ToInt32(genreId));
+                model.Genre = _context.Genres.Find(id);
             }
 
 
