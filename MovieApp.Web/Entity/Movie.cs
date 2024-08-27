@@ -20,7 +20,7 @@ namespace MovieApp.Web.Entity
         public string Description { get; set; }
 
 
-        public string Director { get; set; }
+        //public string Director { get; set; }
 
         //public string[] Players { get; set; }
 
