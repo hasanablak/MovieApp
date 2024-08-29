@@ -25,6 +25,16 @@ namespace MovieApp.Web.Data
             {
                 var genres = GetGenresForSeeding();
 
+                var users = GetUsersForSeeding();
+
+                var peoples = GetPeoplesForSeeding(users);
+
+                var crews = GetCrewsForSeeding(genres[0].Movies, peoples);
+
+                var casts = GetCastsForSeeding(genres[0].Movies, peoples);
+
+
+
                 //var movies = GetMoviesForSeeding(genres);
 
 
@@ -36,7 +46,22 @@ namespace MovieApp.Web.Data
 
                 if(context.Users.Count() == 0)
                 {
-                    context.Users.AddRange(GetUsersForSeeding());
+                    context.Users.AddRange();
+                }
+
+                if (context.People.Count() == 0)
+                {
+                    context.People.AddRange(peoples);
+                }
+
+                if (context.Crews.Count() == 0)
+                {
+                    context.Crews.AddRange(crews);
+                }
+
+                if (context.Casts.Count() == 0)
+                {
+                    context.Casts.AddRange(casts);
                 }
 
                 // Eğer içeride bir Movie kaydı yok ise
@@ -44,7 +69,7 @@ namespace MovieApp.Web.Data
                 //{
                 //    context.Movies.AddRange(movies);
                 //}
-              
+
 
 
                 context.SaveChanges();
@@ -55,6 +80,20 @@ namespace MovieApp.Web.Data
         {
             var users = new List<User>()
             {
+                new User
+                {
+                    Name = "Hasan Ablak",
+                    Email = "0hasanablak@gmail.com",
+                    Password = "password",
+                    UserName = "hasanablak"
+                },
+                new User
+                {
+                    Name = "Ümmügülsüm Ablak",
+                    Email = "ummu@gmail.com",
+                    Password = "password",
+                    UserName = "ummugulsum"
+                },
                new User
                 {
                     Name = "John Doe",
@@ -62,31 +101,122 @@ namespace MovieApp.Web.Data
                     Password = "password",
                     UserName = "johndoe"
                 },
-                new User
+
+               new User
                 {
-                    Name = "Hasan Ablak",
-                    Email = "0hasanablak@gmail.com",
+                    Name = "Fahrettin Eroğlu",
+                    Email = "fahrettin@gmail.com",
                     Password = "password",
-                    UserName = "hasanablak",
-                    Person = new Person()
-                    {
-                        Biography = "1997 Büyükçekmece Doğumlu"
-                    }
+                    UserName = "fahrettin"
                 },
-                new User
+
+               new User
                 {
-                    Name = "Ümmügülsüm Ablak",
-                    Email = "ummu@gmail.com",
+                    Name = "Ahmet Kazım",
+                    Email = "ahmetkazim@gmail.com",
                     Password = "password",
-                    UserName = "ummugulsum",
-                    Person = new Person()
-                    {
-                        Biography = "Lorem ipsum dolar sit amet"
-                    }
-                }
+                    UserName = "ahmetkazim"
+                },
             };
 
             return users;
+        }
+        private static List<Person> GetPeoplesForSeeding(List<User> users){
+
+            var peoples = new List<Person>()
+            {
+
+                new Person()
+                {
+                    Biography = "1997 Büyükçekmece Doğumlu",
+                    User = users[0]
+                },
+
+                new Person()
+                {
+                    Biography = "Lorem ipsum dolar sit amet",
+                    User = users[1]
+                },
+                new Person()
+                {
+                    Biography = "1997 Büyükçekmece Doğumlu",
+                    User = users[2]
+                },
+
+                new Person()
+                {
+                    Biography = "Lorem ipsum dolar sit amet",
+                    User = users[3]
+                },
+                new Person()
+                {
+                    Biography = "Lorem ipsum dolar sit amet",
+                    User = users[4]
+                }
+
+            };
+
+            return peoples;
+
+        }
+
+        private static List<Crew> GetCrewsForSeeding(List<Movie> movies, List<Person> peoples) {
+            var crew = new List<Crew>()
+            {
+                new Crew() {
+                    Movie = movies[0],
+                    Person = peoples[0],
+                    Job = "Yönetmen"
+                },
+                 new Crew() {
+                    Movie = movies[0],
+                    Person = peoples[1],
+                    Job = "Yönetmen Yardımcısı"
+                },
+                 new Crew() {
+                    Movie = movies[0],
+                    Person = peoples[2],
+                    Job = "Oyuncu"
+                },
+                 new Crew() {
+                    Movie = movies[0],
+                    Person = peoples[3],
+                    Job = "Oyuncu"
+                },
+                 new Crew() {
+                    Movie = movies[0],
+                    Person = peoples[4],
+                    Job = "Oyuncu"
+                }
+            };
+
+            return crew;
+        }
+        private static List<Cast> GetCastsForSeeding(List<Movie> movies, List<Person> peoples)
+        {
+            var casts = new List<Cast>()
+            {
+                new Cast() {
+                    Movie = movies[0],
+                    Person = peoples[2],
+                    Name = "Mehmet Efendi",
+                    Character = "Baba"
+                },
+                 new Cast() {
+                    Movie = movies[0],
+                    Person = peoples[3],
+                    Name = "Muharrem Bey",
+                    Character = "Camii İmamı"
+                },
+                 new Cast() {
+                    Movie = movies[0],
+                    Person = peoples[4],
+                    Name = "Aziz Nesin",
+                    Character = "Şair"
+                }
+            };
+
+            return casts;
         }
         private static List<Movie> GetMoviesForSeeding()
         {

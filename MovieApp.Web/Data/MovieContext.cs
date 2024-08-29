@@ -13,6 +13,11 @@ namespace MovieApp.Web.Data
 
         public DbSet <Person> People { get; set; }
 
+        public DbSet<Crew> Crews { get; set; }
+        public DbSet<Cast> Casts { get; set; }
+
+
+
         public DbSet<Genre> Genres { get; set; }
 
 
