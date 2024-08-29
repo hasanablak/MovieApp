@@ -34,6 +34,11 @@ namespace MovieApp.Web.Data
                     context.Genres.AddRange(genres);
                 }
 
+                if(context.Users.Count() == 0)
+                {
+                    context.Users.AddRange(GetUsersForSeeding());
+                }
+
                 // Eğer içeride bir Movie kaydı yok ise
                 //if (context.Movies.Count() == 0)
                 //{
@@ -46,7 +51,43 @@ namespace MovieApp.Web.Data
             }
 
         }
+        private static List<User> GetUsersForSeeding()
+        {
+            var users = new List<User>()
+            {
+               new User
+                {
+                    Name = "John Doe",
+                    Email = "johndoe@gmail.com",
+                    Password = "password",
+                    UserName = "johndoe"
+                },
+                new User
+                {
+                    Name = "Hasan Ablak",
+                    Email = "0hasanablak@gmail.com",
+                    Password = "password",
+                    UserName = "hasanablak",
+                    Person = new Person()
+                    {
+                        Biography = "1997 Büyükçekmece Doğumlu"
+                    }
+                },
+                new User
+                {
+                    Name = "Ümmügülsüm Ablak",
+                    Email = "ummu@gmail.com",
+                    Password = "password",
+                    UserName = "ummugulsum",
+                    Person = new Person()
+                    {
+                        Biography = "Lorem ipsum dolar sit amet"
+                    }
+                }
+            };
 
+            return users;
+        }
         private static List<Movie> GetMoviesForSeeding()
         {
             var movies = new List<Movie>()

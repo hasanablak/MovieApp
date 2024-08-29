@@ -29,5 +29,6 @@ namespace MovieApp.Web.Entity
 
         public Genre Genre { get; set; } // navigation propery
         public int? GenreId { get; set; }
+
     }
 }

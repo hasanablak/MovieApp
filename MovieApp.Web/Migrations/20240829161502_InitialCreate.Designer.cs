@@ -12,8 +12,8 @@ using MovieApp.Web.Data;
 namespace MovieApp.Web.Migrations
 {
     [DbContext(typeof(MovieContext))]
-    [Migration("20240828022323_GenreTableMoviesPropAdded")]
-    partial class GenreTableMoviesPropAdded
+    [Migration("20240829161502_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,28 +24,6 @@ namespace MovieApp.Web.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("MovieApp.Web.Entity.Director", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Biography")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Directors");
-                });
 
             modelBuilder.Entity("MovieApp.Web.Entity.Genre", b =>
                 {
@@ -94,6 +72,37 @@ namespace MovieApp.Web.Migrations
                     b.ToTable("Movies");
                 });
 
+            modelBuilder.Entity("MovieApp.Web.Entity.Person", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Biography")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Imdb")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PersonalHomePage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PlaceOfBirth")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("People");
+                });
+
             modelBuilder.Entity("MovieApp.Web.Entity.User", b =>
                 {
                     b.Property<int>("Id")
@@ -103,13 +112,18 @@ namespace MovieApp.Web.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FullName")
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -126,9 +140,25 @@ namespace MovieApp.Web.Migrations
                     b.Navigation("Genre");
                 });
 
+            modelBuilder.Entity("MovieApp.Web.Entity.Person", b =>
+                {
+                    b.HasOne("MovieApp.Web.Entity.User", "User")
+                        .WithOne("Person")
+                        .HasForeignKey("MovieApp.Web.Entity.Person", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("MovieApp.Web.Entity.Genre", b =>
                 {
                     b.Navigation("Movies");
+                });
+
+            modelBuilder.Entity("MovieApp.Web.Entity.User", b =>
+                {
+                    b.Navigation("Person");
                 });
 #pragma warning restore 612, 618
         }
