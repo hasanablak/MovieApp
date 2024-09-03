@@ -14,6 +14,7 @@ namespace MovieApp.Web.Entity
          Anladığım kadarıyla, navigation propertyler veritabanında bir kolon eklemekten çok
          bir index'i ifade ediyor.
          */
-        public List<Movie> Movies { get; set; } // Navigation property
+        // 03.09.2024: Çoka çok olması için +1 tablo kendisi oluşturacak
+        public List<Movie> Movies { get; set; } 
     }
 }

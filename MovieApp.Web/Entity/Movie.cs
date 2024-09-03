@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace MovieApp.Web.Entity
 {
@@ -27,8 +28,8 @@ namespace MovieApp.Web.Entity
         [Required]
         public string ImageUrl { get; set; }
 
-        public Genre Genre { get; set; } // navigation propery
-        public int? GenreId { get; set; }
+        // 03.09.2024:  Çoka çok olması için +1 tablo kendisi oluşturacak
+        public List<Genre>  Genres { get; set; }  
 
     }
 }

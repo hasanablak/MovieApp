@@ -45,7 +45,7 @@ namespace MovieApp.Web.Controllers
             if (id != null)
             {
 
-                movies = movies.Where(movie => movie.GenreId == id);
+               // movies = movies.Where(movie => movie.GenreId == id);
 
             }
 

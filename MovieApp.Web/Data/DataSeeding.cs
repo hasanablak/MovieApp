@@ -35,7 +35,7 @@ namespace MovieApp.Web.Data
 
 
 
-                //var movies = GetMoviesForSeeding(genres);
+                var movies = GetMoviesForSeeding(genres);
 
 
                 // Eğer içeride bir Genre kaydı yok ise
@@ -65,10 +65,10 @@ namespace MovieApp.Web.Data
                 }
 
                 // Eğer içeride bir Movie kaydı yok ise
-                //if (context.Movies.Count() == 0)
-                //{
-                //    context.Movies.AddRange(movies);
-                //}
+                if (context.Movies.Count() == 0)
+                {
+                    context.Movies.AddRange(movies);
+                }
 
 
 
@@ -218,14 +218,15 @@ namespace MovieApp.Web.Data
 
             return casts;
         }
-        private static List<Movie> GetMoviesForSeeding()
+        private static List<Movie> GetMoviesForSeeding(List<Genre> genres)
         {
             var movies = new List<Movie>()
             {
                 new Movie{
                     Title = "Inception",
                     Description = "A thief who enters the dreams of others to steal secrets from their subconscious is given a chance to have his criminal history erased as payment for implanting an idea into the mind of a CEO.",
-                    ImageUrl = "inception.jpg"
+                    ImageUrl = "inception.jpg",
+                    Genres = new List<Genre> { genres[0], genres[1] }
                 },
 
                 new Movie{
@@ -293,19 +294,7 @@ namespace MovieApp.Web.Data
             {
                 new Genre
                 {
-                    Name = "Macera",
-                    Movies = new List<Movie>() {
-                                new Movie{
-                                    Title = "Inception",
-                                    Description = "A thief who enters the dreams of others to steal secrets from their subconscious is given a chance to have his criminal history erased as payment for implanting an idea into the mind of a CEO.",
-                                    ImageUrl = "inception.jpg"
-                                },
-                                 new Movie{
-                                    Title = "The Shawshank Redemption",
-                                    Description = "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
-                                    ImageUrl = "shawshank.jpg"
-                                },
-                        }
+                    Name = "Macera"
                 },
                 new Genre
                 {

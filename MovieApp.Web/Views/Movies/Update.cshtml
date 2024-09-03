@@ -33,7 +33,7 @@
         <span asp-validation-for="ImageUrl" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
+   @*  <div class="form-group">
         <label asp-for="GenreId"></label>
         <select class="form-control" asp-for="GenreId" asp-items="@ViewBag.Genres">
             <option selected disabled>Please Select</option>
@@ -41,6 +41,6 @@
         </select>
         <span asp-validation-for="GenreId" class="text-danger"></span>
     </div>
-   
+    *@
     <button type="submit" class="btn btn-primary mt-3">Update</button>
 </form>
