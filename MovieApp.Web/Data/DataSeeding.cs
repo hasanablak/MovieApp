@@ -25,17 +25,19 @@ namespace MovieApp.Web.Data
             {
                 var genres = GetGenresForSeeding();
 
+
+                var movies = GetMoviesForSeeding(genres);
+
                 var users = GetUsersForSeeding();
 
                 var peoples = GetPeoplesForSeeding(users);
 
-                var crews = GetCrewsForSeeding(genres[0].Movies, peoples);
+                var crews = GetCrewsForSeeding(movies, peoples);
 
-                var casts = GetCastsForSeeding(genres[0].Movies, peoples);
+                var casts = GetCastsForSeeding(movies, peoples);
 
 
 
-                var movies = GetMoviesForSeeding(genres);
 
 
                 // Eğer içeride bir Genre kaydı yok ise

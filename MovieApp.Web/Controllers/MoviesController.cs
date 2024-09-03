@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using MovieApp.Web.Data;
 using MovieApp.Web.Entity;
 using MovieApp.Web.Models;
@@ -44,8 +45,14 @@ namespace MovieApp.Web.Controllers
 
             if (id != null)
             {
-
-               // movies = movies.Where(movie => movie.GenreId == id);
+                /*
+                    03.09.2024 22:07
+                    08:53 => https://www.youtube.com/watch?v=IA2gfvv8Qck&list=PLXuv2PShkuHwXNELiS0dHGJ-00V5EelbW&index=54
+                    
+                 */
+                 movies = movies
+                    .Include(movie => movie.Genres) // laravel with
+                    .Where(movie => movie.Genres.Any(genre => genre.GenreId ==id));
 
             }
 
