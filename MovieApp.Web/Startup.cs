@@ -13,53 +13,80 @@ using System.Threading.Tasks;
 
 namespace MovieApp.Web
 {
-    public class Startup
-    {
-        public IConfiguration Configuration { get; }
+	public class Startup
+	{
+		public IConfiguration Configuration { get; }
 
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services
-                .AddDbContext<MovieContext>(options => 
-                    //options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"))
-                    options.UseSqlServer(Configuration.GetConnectionString("MsSqlConnection"))
-                );
+		public Startup(IConfiguration configuration)
+		{
+			Configuration = configuration;
+		}
+		// This method gets called by the runtime. Use this method to add services to the container.
+		// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+		public void ConfigureServices(IServiceCollection services)
+		{
 
-
-            services.AddControllersWithViews();
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                DataSeeding.Seed(app);
-            }
-
-            app.UseStaticFiles(); //wwwroot klasörünü kullanýma açar.
-
-            app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                   name: "default",
-                   pattern: "{controller=Home}/{action=Index}/{id?}"
-                );
-
-              
+			var configuration = Configuration;
+			var databaseType = configuration["Database"];
+			var connectionString = configuration.GetConnectionString(databaseType);
 
 
+			if (databaseType == "MYSQL")
+			{
 
-            });
-        }
-    }
+				services.AddDbContext<MovieContext>(options =>
+				   options.UseMySql(connectionString,
+						ServerVersion.AutoDetect(connectionString)
+				   ));
+
+			}
+			else if (databaseType == "MSSQL")
+			{
+
+				services
+					.AddDbContext<MovieContext>(options =>
+						options.UseSqlServer(connectionString)
+					);
+
+			}
+			else if (databaseType == "SQLLITE")
+			{
+				services
+					.AddDbContext<MovieContext>(options =>
+						options.UseSqlite(connectionString)
+					);
+			}
+
+
+
+			services.AddControllersWithViews();
+		}
+
+		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+		{
+			if (env.IsDevelopment())
+			{
+				app.UseDeveloperExceptionPage();
+				DataSeeding.Seed(app);
+			}
+
+			app.UseStaticFiles(); //wwwroot klasï¿½rï¿½nï¿½ kullanï¿½ma aï¿½ar.
+
+			app.UseRouting();
+
+			app.UseEndpoints(endpoints =>
+			{
+				endpoints.MapControllerRoute(
+				   name: "default",
+				   pattern: "{controller=Home}/{action=Index}/{id?}"
+				);
+
+
+
+
+
+			});
+		}
+	}
 }
