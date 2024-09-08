@@ -11,8 +11,8 @@ using MovieApp.Web.Data;
 namespace MovieApp.Web.Migrations
 {
     [DbContext(typeof(MovieContext))]
-    [Migration("20240906200137_InitialCreateMysql")]
-    partial class InitialCreateMysql
+    [Migration("20240906204531_InitialM")]
+    partial class InitialM
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

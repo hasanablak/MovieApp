@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MovieApp.Web.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreateMysql : Migration
+    public partial class InitialM : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
