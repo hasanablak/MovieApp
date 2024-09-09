@@ -1,7 +1,13 @@
 # MovieApp
  NetCore5  MVC
+ 
 
 
-3) docker run --rm -it -p 80:8080 moviapp-image
-2) docker build -t moviapp-image -f Dockerfile .
-1) dotnet publish -c Release -o out
+
+docker build -t moviapp-image -f Dockerfile .
+
+docker run --rm -it -p 8080:8080 moviapp-image
+
+a: dışarı port
+b: docker iç port
+docker run --rm -it -p a:b moviapp-image
